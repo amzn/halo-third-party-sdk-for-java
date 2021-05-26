@@ -1,0 +1,9 @@
+target/
+*settings.xml
+*.iml
+*.idea
+*.project
+*.classpath
+*.prefs
+*.versionsBackup
+.DS_Store

@@ -1,0 +1,149 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>software.amazon.halo</groupId>
+  <artifactId>halo-third-party-sdk-model</artifactId>
+  <packaging>jar</packaging>
+  <name>halo-third-party-sdk-model</name>
+  <version>1.0.0</version>
+  <url>https://github.com/amzn/halo-third-party-sdk-for-java</url>
+  <description>Contains models for Halo</description>
+
+  <licenses>
+    <license>
+      <name>The Apache License, Version 2.0</name>
+      <url>https://aws.amazon.com/apache-2-0/</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <developers>
+    <developer>
+      <name>Halo Third Party SDK</name>
+      <email>healthtech-partner-engineering-support@amazon.com</email>
+      <organization>Halo</organization>
+    </developer>
+  </developers>
+  <scm>
+    <connection>scm:git:https://github.com/amzn/halo-third-party-sdk-for-java.git</connection>
+    <developerConnection>scm:git:https://github.com/amzn/halo-third-party-sdk-for-java.git</developerConnection>
+    <url>https://github.com/amzn/halo-third-party-sdk-for-java.git</url>
+  </scm>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.13.1</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-annotations</artifactId>
+        <version>[2.12,3.0)</version>
+    </dependency>
+    <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-databind</artifactId>
+        <version>[2.12,3.0)</version>
+    </dependency>
+  </dependencies>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <jackson-version>2.12.0</jackson-version>
+    <maven-plugin-version>1.0.0</maven-plugin-version>
+    <junit-version>4.13.1</junit-version>
+  </properties>
+
+  <build>
+    <sourceDirectory>src</sourceDirectory>
+    <testSourceDirectory>tst</testSourceDirectory>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.7.0</version>
+          <configuration>
+            <source>1.8</source>
+            <target>1.8</target>
+            <forceJavacCompilerUse>true</forceJavacCompilerUse>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+  <profiles>
+    <profile>
+      <id>publishing</id>
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.sonatype.plugins</groupId>
+            <artifactId>nexus-staging-maven-plugin</artifactId>
+            <version>1.6.8</version>
+            <extensions>true</extensions>
+            <configuration>
+              <serverId>sonatype-nexus-staging</serverId>
+              <nexusUrl>https://oss.sonatype.org</nexusUrl>
+            </configuration>
+          </plugin>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-source-plugin</artifactId>
+            <version>2.2.1</version>
+            <executions>
+              <execution>
+                <id>attach-sources</id>
+                <goals>
+                  <goal>jar-no-fork</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>javadoc-jar</id>
+                <goals>
+                  <goal>jar</goal>
+                </goals>
+              </execution>
+            </executions>
+            <configuration>
+              <minmemory>128m</minmemory>
+              <maxmemory>4g</maxmemory>
+              <includeDependencySources>false</includeDependencySources>
+              <show>public</show>
+              <defaultexcludes>yes</defaultexcludes>
+              <author>false</author>
+              <version>true</version>
+              <use>false</use>
+              <notree>true</notree>
+              <nodeprecatedlist>true</nodeprecatedlist>
+              <windowtitle>Halo Third Party SDK for Java - ${project.version}</windowtitle>
+              <encoding>UTF-8</encoding>
+              <docencoding>UTF-8</docencoding>
+              <doctitle>Halo Third Party SDK for Java API Reference - ${project.version}</doctitle>
+              <packagesheader>Halo Third Party SDK for Java</packagesheader>
+              <bottom><![CDATA[Copyright &#169; Amazon.com, Inc. or its affiliates. All Rights Reserved.]]></bottom>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+</project>
