@@ -1,0 +1,7 @@
+target/
+*settings.xml
+*.iml
+*.idea
+/build
+build/
+.DS_Store
