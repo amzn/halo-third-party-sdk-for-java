@@ -30,6 +30,8 @@ import java.security.PrivateKey;
 import java.security.Signature;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
+import java.security.spec.MGF1ParameterSpec;
+import java.security.spec.PSSParameterSpec;
 import java.util.Date;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -120,7 +122,7 @@ public class HaloEventSignatureVerifierTest {
         certGen.setNotBefore(new Date(System.currentTimeMillis() - 60000));
         certGen.setNotAfter(new Date(System.currentTimeMillis() + 60000));
         certGen.setPublicKey(keyPair.getPublic());
-        certGen.setSignatureAlgorithm(ServletConstants.SIGNATURE_ALGORITHM);
+        certGen.setSignatureAlgorithm(ServletConstants.CERT_SIGNATURE_ALGORITHM);
         certGen.addExtension(X509Extensions.SubjectAlternativeName, false, subjectAltName);
         // BC means the Bouncy Castle security provider.
         return certGen.generate(validPrivateKey, "BC");
@@ -253,12 +255,19 @@ public class HaloEventSignatureVerifierTest {
 
     private static KeyPair generateKeyPair() throws NoSuchAlgorithmException {
         KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance(ServletConstants.SIGNATURE_TYPE);
-        keyPairGenerator.initialize(512);
+        keyPairGenerator.initialize(2048);
         return keyPairGenerator.generateKeyPair();
     }
 
     private static byte[] signContent(String content, PrivateKey key) throws Exception {
         Signature signature = Signature.getInstance(ServletConstants.SIGNATURE_ALGORITHM);
+        PSSParameterSpec pssSpec = new PSSParameterSpec(
+            ServletConstants.HASH_ALGORITHM,
+            ServletConstants.MASK_GEN_ALGORITHM,
+            MGF1ParameterSpec.SHA256,
+            ServletConstants.SALT_SIZE,
+            ServletConstants.TRAILER_FIELD);
+        signature.setParameter(pssSpec);
         signature.initSign(key);
         signature.update(content.getBytes());
         return signature.sign();

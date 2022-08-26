@@ -26,7 +26,32 @@ public final class ServletConstants {
     /**
      * The algorithm used to generate the signature.
      */
-    public static final String SIGNATURE_ALGORITHM = "SHA256withRSA";
+    public static final String SIGNATURE_ALGORITHM = "RSASSA-PSS";
+
+    /**
+     * Certificate algorithm used to generate the signature.
+     */
+    public static final String CERT_SIGNATURE_ALGORITHM = "SHA256withRSA";
+
+    /**
+     * signature salt size
+     */
+    public static final int SALT_SIZE = 32;
+
+    /**
+     * signature trailer field
+     */
+    public static final int TRAILER_FIELD = 1;
+
+    /**
+     * signature hash algorithm
+     */
+    public static final String HASH_ALGORITHM = "SHA-256";
+
+    /**
+     * signature mask gen algorithm
+     */
+    public static final String MASK_GEN_ALGORITHM = "MGF1";
 
     /**
      * The character encoding used.
@@ -55,7 +80,7 @@ public final class ServletConstants {
     /**
      * The name of the request header that contains the signature.
      */
-    public static final String SIGNATURE_REQUEST_HEADER = "SignatureSha256";
+    public static final String SIGNATURE_REQUEST_HEADER = "Signature";
 
     /**
      * The name of the request header that contains the URL for the certificate chain needed to

@@ -34,6 +34,8 @@ import java.security.Signature;
 import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
+import java.security.spec.MGF1ParameterSpec;
+import java.security.spec.PSSParameterSpec;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -128,6 +130,13 @@ public final class HaloEventSignatureVerifier implements HaloEventVerifier {
 
             // verify that the request was signed by the provided certificate
             Signature signature = Signature.getInstance(ServletConstants.SIGNATURE_ALGORITHM);
+            PSSParameterSpec pssSpec = new PSSParameterSpec(
+                ServletConstants.HASH_ALGORITHM,
+                ServletConstants.MASK_GEN_ALGORITHM,
+                MGF1ParameterSpec.SHA256,
+                ServletConstants.SALT_SIZE,
+                ServletConstants.TRAILER_FIELD);
+            signature.setParameter(pssSpec);
             signature.initVerify(signingCertificate.getPublicKey());
             signature.update(haloHttpRequest.getSerializedRequestEnvelope());
             if (!signature.verify(Base64.decodeBase64(baseEncoded64Signature

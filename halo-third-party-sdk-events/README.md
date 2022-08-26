@@ -4,6 +4,15 @@ Halo Third Party SDK Events package is an extension package that will let develo
 
 The Halo Third Party SDK for Java makes it easier for you to verify events and allows you to spend more time on implementing features and less on writing boiler-plate code.
 
+Difference between 2.x and 1.x versions
+-------------------------
+Message validation was changed as a part of a security campaign.
+
+Changes to be made if used 1.x version previously
+-------------------------
+Message structure was changed, "SignatureSha256" header has been replaced with "Signature" header.
+When creating ServletRequest in step 2 of "Usage and Getting Started" section, first parameter should be "Signature" header value, and not "SignatureSha256" header value.
+
 Quick Start
 -----------
 
@@ -40,7 +49,7 @@ Usage and Getting Started
     
    ```
     ServletRequest request = new ServletRequest(
-      input.getSignatureSha256(),
+      input.getSignature(),
       input.getSignatureCertChainUrl(),
       input.getMessage().array(),
       requestEnvelope
