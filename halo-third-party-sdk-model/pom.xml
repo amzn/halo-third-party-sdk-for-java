@@ -5,7 +5,7 @@
   <artifactId>halo-third-party-sdk-model</artifactId>
   <packaging>jar</packaging>
   <name>halo-third-party-sdk-model</name>
-  <version>1.0.0</version>
+  <version>1.1.0</version>
   <url>https://github.com/amzn/halo-third-party-sdk-for-java</url>
   <description>Contains models for Halo</description>
 

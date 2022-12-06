@@ -47,6 +47,12 @@ public final class Sleep {
     @JsonProperty("modified")
     private Boolean modified = null;
 
+    @JsonProperty("sessionStartTime")
+    private String sessionStartTime = null;
+
+    @JsonProperty("sessionEndTime")
+    private String sessionEndTime = null;
+
     public static Builder builder() {
         return new Builder();
     }
@@ -72,6 +78,12 @@ public final class Sleep {
         }
         if (builder.modified != null) {
             this.modified = builder.modified;
+        }
+        if (builder.sessionStartTime != null) {
+            this.sessionStartTime = builder.sessionStartTime;
+        }
+        if (builder.sessionEndTime != null) {
+            this.sessionEndTime = builder.sessionEndTime;
         }
     }
 
@@ -145,6 +157,26 @@ public final class Sleep {
     }
 
 
+    /**
+     * The date and time the session started, encoded in ISO8601 date/time format (yyyy-mm-ddThh:mm:ss.mmmZ).
+     * @return sessionStartTime
+    **/
+    @JsonProperty("sessionStartTime")
+    public String getSessionStartTime() {
+        return sessionStartTime;
+    }
+
+
+    /**
+     * The date and time the session ended, encoded in ISO8601 date/time format (yyyy-mm-ddThh:mm:ss.mmmZ).
+     * @return sessionEndTime
+    **/
+    @JsonProperty("sessionEndTime")
+    public String getSessionEndTime() {
+        return sessionEndTime;
+    }
+
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -160,12 +192,14 @@ public final class Sleep {
             Objects.equals(this.efficiency, sleep.efficiency) &&
             Objects.equals(this.onsetLatency, sleep.onsetLatency) &&
             Objects.equals(this.numberOfAwakenings, sleep.numberOfAwakenings) &&
-            Objects.equals(this.modified, sleep.modified);
+            Objects.equals(this.modified, sleep.modified) &&
+            Objects.equals(this.sessionStartTime, sleep.sessionStartTime) &&
+            Objects.equals(this.sessionEndTime, sleep.sessionEndTime);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(timestamp, score, duration, efficiency, onsetLatency, numberOfAwakenings, modified);
+        return Objects.hash(timestamp, score, duration, efficiency, onsetLatency, numberOfAwakenings, modified, sessionStartTime, sessionEndTime);
     }
 
     @Override
@@ -180,6 +214,8 @@ public final class Sleep {
         sb.append("    onsetLatency: ").append(toIndentedString(onsetLatency)).append("\n");
         sb.append("    numberOfAwakenings: ").append(toIndentedString(numberOfAwakenings)).append("\n");
         sb.append("    modified: ").append(toIndentedString(modified)).append("\n");
+        sb.append("    sessionStartTime: ").append(toIndentedString(sessionStartTime)).append("\n");
+        sb.append("    sessionEndTime: ").append(toIndentedString(sessionEndTime)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -203,6 +239,8 @@ public final class Sleep {
         private BigDecimal onsetLatency;
         private Integer numberOfAwakenings;
         private Boolean modified;
+        private String sessionStartTime;
+        private String sessionEndTime;
 
         private Builder() {}
 
@@ -258,6 +296,22 @@ public final class Sleep {
 
         public Builder withModified(Boolean modified) {
             this.modified = modified;
+            return this;
+        }
+
+
+        @JsonProperty("sessionStartTime")
+
+        public Builder withSessionStartTime(String sessionStartTime) {
+            this.sessionStartTime = sessionStartTime;
+            return this;
+        }
+
+
+        @JsonProperty("sessionEndTime")
+
+        public Builder withSessionEndTime(String sessionEndTime) {
+            this.sessionEndTime = sessionEndTime;
             return this;
         }
 

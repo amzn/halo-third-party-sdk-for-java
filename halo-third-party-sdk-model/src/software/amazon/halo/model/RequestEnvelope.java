@@ -77,7 +77,7 @@ public final class RequestEnvelope {
 
 
     /**
-     * The notification type, which can have values 'HEALTH_METRIC', 'HEALTH_METRIC_TEST', or 'DEAUTHORIZATION'.
+     * The notification type, which can have values 'HEALTH_METRIC', 'HEALTH_METRIC_TEST', 'DEAUTHORIZATION', 'HEALTH_METRIC_DELETION', or 'HEALTH_METRIC_DELETION_TEST'.
      * @return type
     **/
     @JsonProperty("type")

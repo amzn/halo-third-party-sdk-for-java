@@ -31,6 +31,9 @@ public final class Activity {
     @JsonProperty("sessions")
     private List<software.amazon.halo.model.ActivitySession> sessions = new ArrayList<software.amazon.halo.model.ActivitySession>();
 
+    @JsonProperty("summary")
+    private software.amazon.halo.model.ActivitySummary summary = null;
+
     public static Builder builder() {
         return new Builder();
     }
@@ -38,6 +41,9 @@ public final class Activity {
     private Activity(Builder builder) {
         if (builder.sessions != null) {
             this.sessions = builder.sessions;
+        }
+        if (builder.summary != null) {
+            this.summary = builder.summary;
         }
     }
 
@@ -51,6 +57,16 @@ public final class Activity {
     }
 
 
+    /**
+     * Get summary
+     * @return summary
+    **/
+    @JsonProperty("summary")
+    public software.amazon.halo.model.ActivitySummary getSummary() {
+        return summary;
+    }
+
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -60,12 +76,13 @@ public final class Activity {
             return false;
         }
         Activity activity = (Activity) o;
-        return Objects.equals(this.sessions, activity.sessions);
+        return Objects.equals(this.sessions, activity.sessions) &&
+            Objects.equals(this.summary, activity.summary);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(sessions);
+        return Objects.hash(sessions, summary);
     }
 
     @Override
@@ -74,6 +91,7 @@ public final class Activity {
         sb.append("class Activity {\n");
         
         sb.append("    sessions: ").append(toIndentedString(sessions)).append("\n");
+        sb.append("    summary: ").append(toIndentedString(summary)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -91,6 +109,7 @@ public final class Activity {
   
     public static class Builder {
         private List<software.amazon.halo.model.ActivitySession> sessions;
+        private software.amazon.halo.model.ActivitySummary summary;
 
         private Builder() {}
 
@@ -108,6 +127,14 @@ public final class Activity {
             this.sessions.add(sessionsItem);
             return this;
         }
+
+        @JsonProperty("summary")
+
+        public Builder withSummary(software.amazon.halo.model.ActivitySummary summary) {
+            this.summary = summary;
+            return this;
+        }
+
 
         public Activity build() {
             return new Activity(this);

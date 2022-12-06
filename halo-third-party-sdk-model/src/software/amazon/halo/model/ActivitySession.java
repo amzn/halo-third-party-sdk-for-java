@@ -55,6 +55,9 @@ public final class ActivitySession {
     @JsonProperty("calorieInfo")
     private software.amazon.halo.model.CalorieInfo calorieInfo = null;
 
+    @JsonProperty("duration")
+    private software.amazon.halo.model.ActivitySessionDuration duration = null;
+
     public static Builder builder() {
         return new Builder();
     }
@@ -89,6 +92,9 @@ public final class ActivitySession {
         }
         if (builder.calorieInfo != null) {
             this.calorieInfo = builder.calorieInfo;
+        }
+        if (builder.duration != null) {
+            this.duration = builder.duration;
         }
     }
 
@@ -192,6 +198,16 @@ public final class ActivitySession {
     }
 
 
+    /**
+     * Get duration
+     * @return duration
+    **/
+    @JsonProperty("duration")
+    public software.amazon.halo.model.ActivitySessionDuration getDuration() {
+        return duration;
+    }
+
+
     @Override
     public boolean equals(java.lang.Object o) {
         if (this == o) {
@@ -210,12 +226,13 @@ public final class ActivitySession {
             Objects.equals(this.stepInfo, activitySession.stepInfo) &&
             Objects.equals(this.heartRate, activitySession.heartRate) &&
             Objects.equals(this.timestamp, activitySession.timestamp) &&
-            Objects.equals(this.calorieInfo, activitySession.calorieInfo);
+            Objects.equals(this.calorieInfo, activitySession.calorieInfo) &&
+            Objects.equals(this.duration, activitySession.duration);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, type, startDateTime, endDateTime, modified, automatic, stepInfo, heartRate, timestamp, calorieInfo);
+        return Objects.hash(id, type, startDateTime, endDateTime, modified, automatic, stepInfo, heartRate, timestamp, calorieInfo, duration);
     }
 
     @Override
@@ -233,6 +250,7 @@ public final class ActivitySession {
         sb.append("    heartRate: ").append(toIndentedString(heartRate)).append("\n");
         sb.append("    timestamp: ").append(toIndentedString(timestamp)).append("\n");
         sb.append("    calorieInfo: ").append(toIndentedString(calorieInfo)).append("\n");
+        sb.append("    duration: ").append(toIndentedString(duration)).append("\n");
         sb.append("}");
         return sb.toString();
     }
@@ -259,6 +277,7 @@ public final class ActivitySession {
         private software.amazon.halo.model.HeartRate heartRate;
         private String timestamp;
         private software.amazon.halo.model.CalorieInfo calorieInfo;
+        private software.amazon.halo.model.ActivitySessionDuration duration;
 
         private Builder() {}
 
@@ -338,6 +357,14 @@ public final class ActivitySession {
 
         public Builder withCalorieInfo(software.amazon.halo.model.CalorieInfo calorieInfo) {
             this.calorieInfo = calorieInfo;
+            return this;
+        }
+
+
+        @JsonProperty("duration")
+
+        public Builder withDuration(software.amazon.halo.model.ActivitySessionDuration duration) {
+            this.duration = duration;
             return this;
         }
 
