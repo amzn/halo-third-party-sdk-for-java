@@ -12,7 +12,7 @@ The **Halo Third Party SDK for Java** makes it easier for you to integrate with 
 | Package       | Maven         |
 | ------------- | ------------- |
 |[halo-third-party-sdk-events](https://github.com/amzn/halo-third-party-sdk-for-java/tree/2.x/halo-third-party-sdk-events)| [![Maven Central](https://img.shields.io/badge/maven--central-2.0.0-blue)](https://search.maven.org/artifact/software.amazon.halo/halo-third-party-sdk-events)
-|[halo-third-party-sdk-model](https://github.com/amzn/halo-third-party-sdk-for-java/tree/2.x/halo-third-party-sdk-model)| [![Maven Central](https://img.shields.io/badge/maven--central-1.0.0-blue)](https://search.maven.org/artifact/software.amazon.halo/halo-third-party-sdk-model)
+|[halo-third-party-sdk-model](https://github.com/amzn/halo-third-party-sdk-for-java/tree/2.x/halo-third-party-sdk-model)| [![Maven Central](https://img.shields.io/badge/maven--central-1.1.0-blue)](https://search.maven.org/artifact/software.amazon.halo/halo-third-party-sdk-model)
 
 
 
